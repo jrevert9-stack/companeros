@@ -61,7 +61,7 @@ function mostrar(img, url, alCargar) {
 if (anterior && anterior !== nueva) {           // fundido de la imagen anterior a la nueva
   mostrar(A, anterior);
   mostrar(B, nueva, () => setTimeout(() => A.style.opacity = 0, 1200));
-} else { mostrar(A, nueva); }
+} else if (nueva) { mostrar(A, nueva); }
 
 if (modo === 'llamada') {
   const inicio = __INICIO__ * 1000, reloj = document.getElementById('reloj');

@@ -50,6 +50,21 @@ def voz_cache(texto, voz):
     return motor.voz_mp3(texto, voz)
 
 
+def foto(url, aviso=None):
+    """Ruta local de una imagen generada (la descarga el servidor), o None si no ha cargado."""
+    if not url:
+        return None
+    if aviso:
+        with st.spinner(aviso):
+            return motor.imagen_local(url)
+    return motor.imagen_local(url)
+
+
+def data_uri(ruta):
+    with open(ruta, "rb") as f:
+        return "data:image/jpeg;base64," + base64.b64encode(f.read()).decode()
+
+
 def preparar_imagen(datos):
     """Reduce la foto que mandas para que no pese (y la pasa a JPEG)."""
     from PIL import Image, ImageOps
@@ -88,14 +103,15 @@ with st.sidebar:
     st.caption(f"Motor IA: {motor.BACKEND}")
 
 p = PERSONAJES[pid]
-AVATAR = motor.url_avatar(p)
+AVATAR = foto(motor.url_avatar(p), f"Cargando a {p['nombre']}…") or ("👩" if p.get("genero") == "f" else "🧑")
 modo = ss.get("modo") if ss.get("modo_pid") == pid else None
 
 # ---------- Cabecera ----------
 puntos = memoria.afinidad(pid)
 num, nombre_nivel, base, sig = motor.nivel(puntos)
 clima = mundo.tiempo(p)
-st.markdown(f"""<div class="cab"><img src="{AVATAR}"><div><h2>{p['nombre']}</h2>
+img_cab = f'<img src="{data_uri(AVATAR)}">' if os.path.exists(AVATAR) else f'<span style="font-size:44px">{AVATAR}</span>'
+st.markdown(f"""<div class="cab">{img_cab}<div><h2>{p['nombre']}</h2>
 <small>{motor.conexion(p)} · ❤️ Nivel {num} {nombre_nivel}<br>
 📍 {p['lugares'][motor.lugar_actual(p)]['nombre']} · {mundo.momento_del_dia()[0]}{' · ' + clima[0] if clima else ''}</small>
 </div></div>""", unsafe_allow_html=True)
@@ -166,9 +182,19 @@ def salir_de_escena():
 if modo in ("llamada", "quedada"):
     lugar_nombre = p["lugares"][motor.lugar_actual(p)]["nombre"]
     audio = ss.pop("audio_escena", None)
+    url_actual = ss.get("vista") or motor.url_vista(p, "smiling, happy to see you", modo, 0)
+    ruta_actual = foto(url_actual, f"{p['nombre']} {'conectando la cámara' if modo == 'llamada' else 'está llegando'}…")
+    if not ruta_actual:  # si la nueva no carga, se queda la anterior
+        ruta_actual = foto(ss.get("vista_ok")) if ss.get("vista_ok") else None
+    else:
+        ss.vista_ok = url_actual
+    url_prev = ss.pop("vista_anterior", None)
+    ruta_prev = foto(url_prev) if url_prev else None
+    if not ruta_actual:
+        st.warning("Las imágenes tardan en cargar ahora mismo. Puedes seguir hablando y lo reintento en el siguiente mensaje.")
     escena.mostrar(
-        p["nombre"], ss.get("vista") or motor.url_vista(p, "smiling, happy to see you", modo, 0),
-        modo=modo, foto_anterior=ss.pop("vista_anterior", None),
+        p["nombre"], data_uri(ruta_actual) if ruta_actual else "",
+        modo=modo, foto_anterior=data_uri(ruta_prev) if ruta_prev and ruta_prev != ruta_actual else None,
         inicio=ss.setdefault("inicio_llamada", time.time()), audio=audio,
         texto=ss.get("ultima_habla", "") if audio else "",
         narracion=ss.get("ultima_narracion", "") if modo == "quedada" else "",
@@ -230,10 +256,13 @@ if not ss.get(f"proactivo_{pid}"):
 
 # Historias de hoy
 hist = motor.historias(p)
-if hist:
-    with st.popover(f"📖 Historias de hoy ({len(hist)})", use_container_width=True):
-        for url, texto in reversed(hist):
-            st.image(url, caption=texto)
+if hist and st.toggle(f"📖 Ver historias de hoy ({len(hist)})", key=f"hist_{pid}"):
+    for url, texto in reversed(hist):
+        ruta = foto(url, "Cargando historia…")
+        if ruta:
+            st.image(ruta, caption=texto)
+        else:
+            st.caption(f"{texto} · (la imagen no ha cargado)")
 
 historial = memoria.historial(pid)
 if not historial:
@@ -257,7 +286,11 @@ for i, m in enumerate(historial):
         continue
     with st.chat_message("assistant", avatar=AVATAR):
         if rol == "foto":
-            st.image(contenido)
+            ruta = foto(contenido, f"{p['nombre']} te está enviando una foto…")
+            if ruta:
+                st.image(ruta)
+            else:
+                st.caption("📷 Foto (no ha cargado; recarga la página en un momento)")
         elif rol == "nota_voz":
             audio = voz_cache(contenido, p["voz"])
             if audio:
