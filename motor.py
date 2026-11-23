@@ -18,6 +18,8 @@ import mundo
 # BACKEND: "gemini" (recomendado), "pollinations", "ollama" o "demo" (sin IA, para probar)
 BACKEND = os.getenv("BACKEND", "gemini")
 MODELO_GEMINI = os.getenv("MODELO_GEMINI", "gemini-flash-latest")
+# Si el modelo principal está saturado (error 503), se prueban estos en orden
+MODELOS_RESERVA = ["gemini-flash-lite-latest", "gemini-flash-latest"]
 MODELO_OLLAMA = os.getenv("MODELO_OLLAMA", "llama3.1")
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
 HORAS_PARA_ESCRIBIR_PRIMERO = float(os.getenv("HORAS_PARA_ESCRIBIR_PRIMERO", "3"))
@@ -253,10 +255,21 @@ ETIQUETAS (al final, en líneas aparte; el usuario no las ve):
 # =====================================================================
 #                          Llamada al modelo
 # =====================================================================
+class Saturado(RuntimeError):
+    pass
+
+
 def _openai_compatible(url, mensajes, modelo, clave=None):
     import requests
     cabeceras = {"Authorization": f"Bearer {clave}"} if clave else {}
-    r = requests.post(url, headers=cabeceras, timeout=120, json={"model": modelo, "messages": mensajes})
+    try:
+        r = requests.post(url, headers=cabeceras, timeout=120, json={"model": modelo, "messages": mensajes})
+    except requests.RequestException as e:
+        raise Saturado(f"sin conexión ({e.__class__.__name__})")
+    if r.status_code in (500, 502, 503, 504):
+        raise Saturado(f"servidor saturado ({r.status_code})")
+    if r.status_code == 404:
+        raise Saturado(f"modelo {modelo} no disponible")
     if r.status_code == 429:
         raise RuntimeError("Has llegado al límite gratuito por ahora. Espera un poco y vuelve a intentarlo.")
     r.raise_for_status()
@@ -264,11 +277,21 @@ def _openai_compatible(url, mensajes, modelo, clave=None):
 
 
 def _gemini(mensajes):
+    """Reintenta y cambia de modelo si Google está saturado."""
+    import time as _t
     clave = os.getenv("GEMINI_API_KEY")
     if not clave:
         raise RuntimeError("Falta GEMINI_API_KEY. Consíguela gratis en https://aistudio.google.com")
-    return _openai_compatible("https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
-                              mensajes, MODELO_GEMINI, clave)
+    url = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions"
+    modelos = [MODELO_GEMINI] + [m for m in MODELOS_RESERVA if m != MODELO_GEMINI]
+    ultimo_error = None
+    for intento, modelo in enumerate(modelos * 2):  # dos vueltas por todos los modelos
+        try:
+            return _openai_compatible(url, mensajes, modelo, clave)
+        except Saturado as e:
+            ultimo_error = e
+            _t.sleep(1.5 * (intento + 1))
+    raise RuntimeError(f"Google está saturado ahora mismo ({ultimo_error}). Prueba de nuevo en un minuto.")
 
 
 def _pollinations(mensajes):
@@ -313,18 +336,27 @@ LLAMADAS = {"gemini": _gemini, "pollinations": _pollinations, "ollama": _ollama,
 
 def transcribir(audio, mime="audio/wav"):
     """Voz a texto con Gemini (gratis)."""
+    import time as _t
     import requests
     clave = os.getenv("GEMINI_API_KEY")
     if not clave:
         raise RuntimeError("Para hablar por micrófono hace falta GEMINI_API_KEY.")
-    r = requests.post(
-        f"https://generativelanguage.googleapis.com/v1beta/models/{MODELO_GEMINI}:generateContent",
-        headers={"x-goog-api-key": clave}, timeout=120, json={"contents": [{"parts": [
-            {"text": "Transcribe exactamente lo que dice este audio en español. Devuelve solo el texto. "
-                     "Si no se oye nada, devuelve vacío."},
-            {"inline_data": {"mime_type": mime, "data": base64.b64encode(audio).decode()}}]}]})
+    cuerpo = {"contents": [{"parts": [
+        {"text": "Transcribe exactamente lo que dice este audio en español. Devuelve solo el texto. "
+                 "Si no se oye nada, devuelve vacío."},
+        {"inline_data": {"mime_type": mime, "data": base64.b64encode(audio).decode()}}]}]}
+    modelos = [MODELO_GEMINI] + [m for m in MODELOS_RESERVA if m != MODELO_GEMINI]
+    r = None
+    for intento, modelo in enumerate(modelos * 2):
+        r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{modelo}:generateContent",
+                          headers={"x-goog-api-key": clave}, timeout=120, json=cuerpo)
+        if r.status_code not in (404, 500, 502, 503, 504):
+            break
+        _t.sleep(1.5 * (intento + 1))
     if r.status_code == 429:
         raise RuntimeError("Límite gratuito alcanzado por ahora. Espera un poco.")
+    if r.status_code >= 500:
+        raise RuntimeError("Google está saturado ahora mismo. Prueba de nuevo en un minuto.")
     r.raise_for_status()
     partes = r.json()["candidates"][0]["content"].get("parts", [])
     return "".join(x.get("text", "") for x in partes).strip()
