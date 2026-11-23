@@ -113,6 +113,45 @@ def url_foto(p, escena, ancho=768, alto=1024, semilla_extra="", con_lugar=True, 
             f"?model=flux&width={ancho}&height={alto}&seed={semilla}&nologo=true&safe=true")
 
 
+# ---------- Descarga de imágenes (una a una, con caché en disco) ----------
+import hashlib
+import threading
+
+_CARPETA_IMG = Path(os.getenv("CARPETA_IMAGENES", "/tmp/companeros_img"))
+_CANDADO_IMG = threading.Lock()  # el servicio gratis solo admite una petición a la vez
+
+
+def imagen_local(url, intentos=4):
+    """Descarga la imagen (si no estaba ya) y devuelve la ruta del archivo, o None si falla.
+    Con POLLINATIONS_API_KEY usa la API con clave (más rápida, sin logo)."""
+    import time as _t
+    import requests
+    _CARPETA_IMG.mkdir(parents=True, exist_ok=True)
+    ruta = _CARPETA_IMG / (hashlib.md5(url.encode()).hexdigest() + ".jpg")
+    if ruta.exists() and ruta.stat().st_size > 2000:
+        return str(ruta)
+    clave = os.getenv("POLLINATIONS_API_KEY")
+    destino = url
+    if clave:
+        destino = url.replace("https://image.pollinations.ai/prompt/", "https://gen.pollinations.ai/image/") + f"&key={clave}"
+    with _CANDADO_IMG:
+        if ruta.exists() and ruta.stat().st_size > 2000:  # otra petición la bajó mientras esperábamos
+            return str(ruta)
+        for intento in range(intentos):
+            try:
+                r = requests.get(destino, timeout=90)
+                if r.ok and r.headers.get("content-type", "").startswith("image") and len(r.content) > 2000:
+                    ruta.write_bytes(r.content)
+                    return str(ruta)
+                espera = 16 if r.status_code == 429 else 4 * (intento + 1)
+            except requests.RequestException:
+                espera = 4 * (intento + 1)
+            if clave and intento == 1:  # si la clave falla (sin saldo), probar el servicio gratis
+                destino = url
+            _t.sleep(espera)
+    return None
+
+
 def url_avatar(p):
     return url_foto(p, "close-up portrait looking at the camera, friendly expression, neutral background",
                     ancho=320, alto=320, con_lugar=False)
