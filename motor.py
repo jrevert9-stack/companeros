@@ -223,14 +223,20 @@ def conexion(p):
 # =====================================================================
 #                 Fotos (Pollinations · FLUX · gratis y sin clave)
 # =====================================================================
-ESTILO_FOTO_ANTIGUO = ("RAW candid photo, photorealistic, natural lighting, realistic skin texture with pores, "
-               "detailed eyes, shallow depth of field, 35mm film look, subtle grain, "
-               "fully clothed, safe for work, wholesome")
+# Estilo de foto con palabras neutras de fotografía (antes había palabras como "skin" o "nudity",
+# que hacían saltar el filtro de seguridad del generador aunque la escena fuera normal).
+ESTILO_FOTO = ("Ultra-realistic candid photograph, shot on iPhone 15 Pro, natural light, true-to-life details, "
+               "small natural imperfections, sharp focus on the eyes, realistic hands, shallow depth of field, "
+               "no retouching, documentary style, everyday casual clothes")
+
+# Si la escena que pide la IA es sugerente, no se pide foto nueva (se mantiene la anterior):
+# las imágenes del juego son siempre de situaciones cotidianas.
+_ESCENA_NO_APTA = re.compile(r"\b(nude|naked|undress\w*|topless|shirtless|lingerie|underwear|sexy|seductive|sensual|"
+                             r"erotic|in bed|on the bed|making out)\b", re.I)
 
 
-ESTILO_FOTO = ("Ultra-realistic candid photograph, shot on iPhone 15 Pro, natural light, true-to-life skin texture with pores "
-               "and small imperfections, natural asymmetry, sharp focus on the eyes, realistic hands, shallow depth of field, "
-               "no makeup filter, no retouching, documentary style, fully clothed, safe for work")
+def escena_apta(texto):
+    return not _ESCENA_NO_APTA.search(texto or "")
 
 
 def url_foto(p, escena, ancho=768, alto=1024, semilla_extra="", con_lugar=True, clave_lugar=None):
@@ -289,8 +295,9 @@ _CARPETA_IMG = Path(os.getenv("CARPETA_IMAGENES", "/tmp/companeros_img"))
 # Sin clave el servicio gratis solo admite una petición a la vez; con clave, varias.
 _CANDADO_IMG = threading.Semaphore(3 if os.getenv("POLLINATIONS_API_KEY") else 1)
 MODELO_IMAGEN = os.getenv("MODELO_IMAGEN", "flux")
-NEGATIVO_FOTO = ("cartoon, anime, 3d render, illustration, plastic skin, airbrushed, deformed face, asymmetric eyes, "
-                 "extra fingers, bad hands, blurry, watermark, text, nudity")  # con clave puedes probar "zimage" (muy realista)
+# Con clave puedes probar MODELO_IMAGEN = "zimage" (muy realista).
+NEGATIVO_FOTO = ("cartoon, anime, 3d render, illustration, airbrushed, plastic look, deformed face, asymmetric eyes, "
+                 "extra fingers, bad hands, blurry, watermark, text, phone screen, user interface")
 
 
 def imagen_local(url, intentos=4):
@@ -363,10 +370,11 @@ def url_avatar(p):
 def url_vista(p, descripcion, modo, turno_n=0):
     """Imagen de la videollamada (selfie) o de la quedada (lo que ves con tus ojos)."""
     if modo == "quedada":
-        encuadre = ("first person point of view of someone sitting or standing right in front of her, "
-                    "eye level, she is looking at the viewer, intimate natural framing, as seen with own eyes")
+        encuadre = ("first person point of view of someone sitting or standing right in front of this person, "
+                    "eye level, looking at the viewer, natural framing, as seen with your own eyes")
     else:
-        encuadre = "video call from her phone front camera, selfie framing, head and shoulders, looking at the screen"
+        # "video call"/"phone" hacía que dibujara la pantalla de un móvil con textos: ahora se pide una foto normal
+        encuadre = "front camera selfie photo, head and shoulders, looking into the lens, real photograph"
     return url_foto(p, f"{encuadre}. {descripcion}", ancho=720, alto=1080, semilla_extra=f"{modo}{turno_n}")
 
 
@@ -395,7 +403,11 @@ def voz_de(texto, p):
     return voz_mp3(texto, p.get("voz", "es-ES-ElviraNeural"), p.get("tono"))
 
 
+ESTADO_VOZ = {"error": None}
+
+
 def voz_mp3(texto, voz, tono=None):
+    """Voz neuronal (edge-tts); si falla o devuelve vacío, gTTS; si todo falla, None (y se apunta el error)."""
     texto = limpiar_para_voz(texto)
     if not texto:
         return None
@@ -409,12 +421,22 @@ def voz_mp3(texto, voz, tono=None):
                 if trozo["type"] == "audio":
                     buf.write(trozo["data"])
             return buf.getvalue()
-        return asyncio.run(_gen())
-    except Exception:
+        audio = asyncio.run(_gen())
+        if audio and len(audio) > 1000:
+            ESTADO_VOZ["error"] = None
+            return audio
+        ESTADO_VOZ["error"] = "edge-tts devolvió audio vacío"
+    except Exception as e:
+        ESTADO_VOZ["error"] = f"edge-tts: {e.__class__.__name__}"
+    try:
         from gtts import gTTS
         buf = io.BytesIO()
         gTTS(texto, lang="es").write_to_fp(buf)
-        return buf.getvalue()
+        if buf.getbuffer().nbytes > 1000:
+            return buf.getvalue()
+    except Exception as e:
+        ESTADO_VOZ["error"] = (ESTADO_VOZ["error"] or "") + f" · gTTS: {e.__class__.__name__}"
+    return None
 
 
 # =====================================================================

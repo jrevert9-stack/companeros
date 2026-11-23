@@ -48,7 +48,7 @@ PLANTILLA = r"""
   <div id="vineta"></div><div id="aro"></div>
   <div id="arriba"><b>__NOMBRE__</b><span><i class="vivo"></i>__ETIQUETA__ <span id="reloj"></span></span></div>
   <div id="abajo"><div id="narra">__NARRA__</div><div id="sub">__TEXTO__</div></div>
-  <button id="play">▶ Escuchar</button>
+  <button id="play">🔊 Toca para activar el sonido</button>
 </div>
 <script>
 const anterior = __ANTERIOR__, nueva = __NUEVA__, modo = "__MODO__";
@@ -138,8 +138,8 @@ function animar() {
 async function empezar(porClic) {
   play.style.display = 'none';
   const ok = await activarAudio(porClic);
+  if (!ok) { play.style.display = 'block'; return; }  // el móvil (sobre todo iPhone) pide un toque para el sonido
   if (!audio) return;
-  if (!ok) { play.style.display = 'block'; return; }  // el móvil pide un toque
   if (ctx && ctx.state === 'running' && !an) {
     try { const f = ctx.createMediaElementSource(audio); an = ctx.createAnalyser(); an.fftSize = 256;
       datos = new Uint8Array(an.frequencyBinCount); f.connect(an); an.connect(ctx.destination); } catch (e) {}

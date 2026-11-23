@@ -284,3 +284,130 @@ def importar(texto_json):
                 presentes = [c for c in cols if c in fila]
                 con.execute(f"INSERT INTO {t}({', '.join(presentes)}) VALUES ({', '.join('?' * len(presentes))})",
                             [fila[c] for c in presentes])
+
+
+# =====================================================================
+#   GUARDADO AUTOMÁTICO EN TU GITHUB (para no perder nunca la partida)
+#   Se guarda en un "gist" privado de tu cuenta después de cada mensaje
+#   y se recupera solo al arrancar. Necesita el secreto GITHUB_TOKEN.
+# =====================================================================
+import os
+import threading
+import time
+
+_DESCRIPCION_GIST = "Compañeros IA - partida guardada"
+_NUBE = {"gist_id": None, "guardando": False, "pendiente": False, "ultimo": 0, "estado": "sin configurar", "cargado": False}
+_CANDADO_NUBE = threading.Lock()
+
+
+def _gh(metodo, ruta, **kw):
+    import requests
+    token = os.getenv("GITHUB_TOKEN")
+    return requests.request(metodo, f"https://api.github.com{ruta}", timeout=20,
+                            headers={"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json"}, **kw)
+
+
+def _buscar_gist():
+    if _NUBE["gist_id"]:
+        return _NUBE["gist_id"]
+    pagina = 1
+    while pagina <= 5:
+        r = _gh("GET", "/gists", params={"per_page": 100, "page": pagina})
+        r.raise_for_status()
+        lista = r.json()
+        for g in lista:
+            if g.get("description") == _DESCRIPCION_GIST:
+                _NUBE["gist_id"] = g["id"]
+                return g["id"]
+        if len(lista) < 100:
+            break
+        pagina += 1
+    return None
+
+
+def nube_activa():
+    return bool(os.getenv("GITHUB_TOKEN"))
+
+
+def estado_nube():
+    return _NUBE["estado"]
+
+
+def cargar_de_nube():
+    """Al arrancar: si la partida local está vacía (la app se reinició), la recupera de GitHub."""
+    if _NUBE["cargado"] or not nube_activa():
+        return False
+    _NUBE["cargado"] = True
+    try:
+        with _con() as con:
+            hay = con.execute("SELECT COUNT(*) FROM mensajes").fetchone()[0]
+        gid = _buscar_gist()
+        if not gid:
+            _NUBE["estado"] = "✅ conectado (aún sin partida guardada)"
+            return False
+        if hay:
+            _NUBE["estado"] = "✅ guardado automático activo"
+            return False
+        import requests
+        g = _gh("GET", f"/gists/{gid}").json()
+        f = g["files"].get("partida.json", {})
+        texto = f.get("content", "")
+        if f.get("truncated") and f.get("raw_url"):
+            texto = requests.get(f["raw_url"], timeout=30).text
+        if texto:
+            importar(texto)
+            _NUBE["estado"] = "✅ partida recuperada de GitHub"
+            return True
+    except Exception as e:
+        _NUBE["estado"] = f"⚠️ no se pudo leer de GitHub ({e.__class__.__name__})"
+    return False
+
+
+def _subir():
+    contenido = exportar()
+    gid = _buscar_gist()
+    cuerpo = {"files": {"partida.json": {"content": contenido}}}
+    if gid:
+        r = _gh("PATCH", f"/gists/{gid}", json=cuerpo)
+    else:
+        r = _gh("POST", "/gists", json={"description": _DESCRIPCION_GIST, "public": False, **cuerpo})
+        if r.ok:
+            _NUBE["gist_id"] = r.json()["id"]
+    r.raise_for_status()
+
+
+def guardar_en_nube():
+    """Guarda en segundo plano (no hace esperar al chat). Si ya está guardando, lo repite al acabar."""
+    if not nube_activa():
+        return
+    with _CANDADO_NUBE:
+        if _NUBE["guardando"]:
+            _NUBE["pendiente"] = True
+            return
+        _NUBE["guardando"] = True
+
+    def _tarea():
+        while True:
+            try:
+                _subir()
+                _NUBE["ultimo"] = time.time()
+                _NUBE["estado"] = f"✅ guardado a las {time.strftime('%H:%M')}"
+            except Exception as e:
+                _NUBE["estado"] = f"⚠️ no se pudo guardar ({e.__class__.__name__})"
+            with _CANDADO_NUBE:
+                if _NUBE["pendiente"]:
+                    _NUBE["pendiente"] = False
+                    continue
+                _NUBE["guardando"] = False
+                return
+    threading.Thread(target=_tarea, daemon=True).start()
+
+
+def guardar_si_hay_cambios():
+    """Se llama en cada recarga de la app: si la partida ha cambiado desde el último guardado, se sube."""
+    if not nube_activa() or not DB.exists():
+        return
+    mtime = DB.stat().st_mtime
+    if mtime > _NUBE.get("mtime", 0):
+        _NUBE["mtime"] = mtime
+        guardar_en_nube()

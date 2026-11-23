@@ -33,6 +33,12 @@ if os.getenv("CLAVE_APP") and not ss.get("dentro"):
         st.rerun()
     st.stop()
 
+# ---------- Partida guardada en tu GitHub: recuperar al arrancar y guardar los cambios ----------
+if memoria.nube_activa():
+    with st.spinner("Recuperando tu partida…"):
+        memoria.cargar_de_nube()
+    memoria.guardar_si_hay_cambios()
+
 st.markdown("""<style>
 .block-container {padding-top:.8rem; padding-bottom:5rem; max-width:720px;}
 [data-testid="stChatMessage"] img {border-radius:14px;}
@@ -79,9 +85,9 @@ def preparar_imagen(datos):
     """Reduce la foto que mandas para que no pese (y la pasa a JPEG)."""
     from PIL import Image, ImageOps
     img = ImageOps.exif_transpose(Image.open(io.BytesIO(datos))).convert("RGB")
-    img.thumbnail((1024, 1024))
+    img.thumbnail((768, 768))
     buf = io.BytesIO()
-    img.save(buf, "JPEG", quality=82)
+    img.save(buf, "JPEG", quality=75)
     return buf.getvalue()
 
 
@@ -144,8 +150,13 @@ with st.sidebar:
                     st.error(f"No pude analizar la foto: {e}")
                 if hecho:
                     st.rerun()
-    with st.expander("💾 Guardar / cargar partida"):
-        st.caption("En la nube la partida puede borrarse si la app se reinicia. Descárgala de vez en cuando.")
+    with st.expander("💾 Partida guardada"):
+        if memoria.nube_activa():
+            st.write(f"Guardado automático en tu GitHub: {memoria.estado_nube()}")
+        else:
+            st.warning("Guardado automático desactivado: añade GITHUB_TOKEN en Secrets (ver README). "
+                       "Mientras tanto, descarga la partida de vez en cuando.")
+        st.caption("Copia de seguridad manual:")
         st.download_button("⬇️ Descargar partida", memoria.exportar(), "partida.json", "application/json",
                            use_container_width=True)
         subida = st.file_uploader("Cargar partida", type="json")
@@ -273,7 +284,7 @@ def enviar(texto, modo_envio="chat", imagen=None):
             ss.audio_chat = voz_cache(r["texto"], p["voz"], p.get("tono"))
     else:
         ss.ultima_narracion, ss.ultima_habla = r["narracion"], r["habla"]
-        if r["vista"]:
+        if r["vista"] and motor.escena_apta(r["vista"]):
             ss.vista_n = ss.get("vista_n", 0) + 1
             ss.vista_anterior = ss.get("vista")
             ss.vista = motor.url_vista(p, r["vista"], modo_envio, ss.vista_n)
@@ -340,7 +351,7 @@ def enviar_grupo(texto, personas):
         st.rerun()
     ss.ultima_narracion = " ".join(f"{n}: {narr}" if n != "Narrador" else narr for n, narr, _ in r["lineas"] if narr)
     ss.ultima_habla = "\n".join(f"{n}: {h}" for n, _, h in r["lineas"] if h)
-    if r["vista"]:
+    if r["vista"] and motor.escena_apta(r["vista"]):
         ss.vista_n = ss.get("vista_n", 0) + 1
         poner_vista(motor.url_foto_grupo(personas, "first person point of view, the viewer is there with them. "
                                          + r["vista"], anf, ancho=720, alto=1080, extra=ss.vista_n))
@@ -381,12 +392,17 @@ if modo in ("llamada", "quedada", "grupo"):
         modo="quedada" if modo == "grupo" else modo,
         foto_anterior=data_uri(ruta_prev) if ruta_prev and ruta_prev != ruta_actual else None,
         inicio=ss.setdefault("inicio_llamada", time.time()), audio=audio,
-        texto=ss.get("ultima_habla", "") if audio or modo == "grupo" else "",
+        texto=ss.get("ultima_habla", ""),
         narracion=ss.get("ultima_narracion", "") if modo != "llamada" else "",
         subtitulos=ss.get("subs", True),
         etiqueta="en directo" if modo == "llamada" else f"📍 {lugar_nombre}",
         ambiente=TIPO_AMBIENTE.get(motor.lugar_actual(anf), "casa") if ss.get("ambiente", True) else "",
         lluvia=any(w in ((mundo.tiempo(anf) or ("", ""))[1]) for w in ("rain", "drizzle", "shower", "thunder")))
+    if audio:
+        # Respaldo: en iPhone, si la voz no suena sola en la escena, dale al play aquí
+        st.audio(audio, format="audio/mp3")
+    elif ss.get("ultima_habla") and motor.ESTADO_VOZ["error"]:
+        st.caption(f"🔇 No se pudo generar la voz ahora ({motor.ESTADO_VOZ['error']}). Tienes el texto en los subtítulos.")
 
     def responder(texto):
         if modo == "grupo":
