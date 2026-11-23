@@ -1,0 +1,1679 @@
+{
+ "sitios": {
+  "bar_dani": {
+   "nombre": "en el bar de tapas de Dani",
+   "escena": "a lively traditional tapas bar in Madrid at night, warm lights, small stage in the corner"
+  },
+  "cafeteria": {
+   "nombre": "en la cafetería donde trabaja Lucía",
+   "escena": "a small cozy coffee shop in Malasaña, Madrid, espresso machine, plants"
+  },
+  "crossfit": {
+   "nombre": "en el box de crossfit",
+   "escena": "an industrial crossfit gym with barbells and rowing machines"
+  },
+  "gimnasio": {
+   "nombre": "en el gimnasio del barrio",
+   "escena": "a neighborhood gym in Madrid with weights and mirrors"
+  },
+  "retiro": {
+   "nombre": "en el Retiro",
+   "escena": "El Retiro park in Madrid, trees, lake with rowing boats"
+  },
+  "rocodromo": {
+   "nombre": "en el rocódromo",
+   "escena": "an indoor bouldering gym with colorful climbing holds"
+  },
+  "salsa": {
+   "nombre": "en la escuela de salsa y bachata",
+   "escena": "a dance studio with wooden floor and mirrors, latin dance class"
+  },
+  "biblioteca": {
+   "nombre": "en la biblioteca",
+   "escena": "a quiet public library in Madrid with tall bookshelves and reading tables"
+  },
+  "mercado": {
+   "nombre": "en el mercado de Antón Martín",
+   "escena": "a traditional indoor food market in Madrid with fruit stalls"
+  },
+  "libreria": {
+   "nombre": "en la librería de segunda mano",
+   "escena": "a small cluttered second-hand bookshop with wooden shelves"
+  },
+  "coworking": {
+   "nombre": "en un coworking de Chamberí",
+   "escena": "a bright modern coworking space with plants and laptops"
+  },
+  "protectora": {
+   "nombre": "en la protectora de animales",
+   "escena": "an animal shelter with dogs in kennels and volunteers"
+  },
+  "padel": {
+   "nombre": "en las pistas de pádel",
+   "escena": "outdoor padel courts with glass walls"
+  },
+  "terraza": {
+   "nombre": "en una terraza en una azotea",
+   "escena": "a rooftop terrace bar in Madrid with city views at sunset"
+  },
+  "sala_conciertos": {
+   "nombre": "en una sala de conciertos",
+   "escena": "a small live music venue with stage lights and a crowd"
+  },
+  "universidad": {
+   "nombre": "en la universidad",
+   "escena": "a university campus in Madrid, students on the lawn"
+  },
+  "parque_perros": {
+   "nombre": "en el parque de perros de Madrid Río",
+   "escena": "a dog park by the river in Madrid Río"
+  },
+  "yoga": {
+   "nombre": "en un estudio de yoga",
+   "escena": "a calm yoga studio with wooden floor and plants"
+  },
+  "hospital": {
+   "nombre": "en el hospital",
+   "escena": "a hospital emergency room corridor"
+  },
+  "estudio_juegos": {
+   "nombre": "en el estudio de videojuegos de Lavapiés",
+   "escena": "an indie game studio office with monitors"
+  },
+  "discoteca": {
+   "nombre": "de fiesta en una discoteca de Malasaña",
+   "escena": "a crowded nightclub in Madrid at night, colorful lights, people dancing"
+  },
+  "fiesta_casa": {
+   "nombre": "en una fiesta en un piso",
+   "escena": "a lively house party in a Madrid apartment, fairy lights, people with drinks"
+  }
+ },
+ "gente": [
+  {
+   "id": "sergio",
+   "nombre": "Sergio",
+   "edad": 34,
+   "genero": "m",
+   "profesion": "entrenador del box de crossfit",
+   "plantilla": "autonomo",
+   "barrio": "Chamberí",
+   "trabajo": "crossfit",
+   "aficiones": [
+    "padel",
+    "bar_dani"
+   ],
+   "voz": "es-ES-AlvaroNeural",
+   "tono": "-6Hz",
+   "personalidad": "Motivador, competitivo, bromista, algo chulito pero noble.",
+   "estilo": "Habla con energía, frases de coach, '¡vamos!', 'venga'.",
+   "historia": "Ex jugador de rugby. Abrió el box hace 3 años con un préstamo. Entrena a Marta y le gusta, aunque ella le da largas.",
+   "rasgos": "broad square jaw, shaved head, short dark beard, brown eyes, thick neck, very muscular build, 1.85 m",
+   "ropa": "tight black training t-shirt and shorts",
+   "relaciones": {
+    "marta": "la entrenas en el box y te gusta",
+    "nuria": "socia del box, os lleváis genial",
+    "javi": "amigo y alumno del box"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Prepara una competición de crossfit en el box."
+    },
+    {
+     "dia": 6,
+     "suceso": "Un patrocinador se echa atrás y el box pasa apuros."
+    },
+    {
+     "dia": 14,
+     "suceso": "Se atreve a pedirle una cita a Marta."
+    }
+   ],
+   "conocer_en": [
+    "crossfit",
+    "padel",
+    "bar_dani",
+    "discoteca",
+    "fiesta_casa"
+   ]
+  },
+  {
+   "id": "nuria",
+   "nombre": "Nuria",
+   "edad": 27,
+   "genero": "f",
+   "profesion": "fisioterapeuta",
+   "plantilla": "oficina",
+   "barrio": "Malasaña",
+   "trabajo": null,
+   "aficiones": [
+    "crossfit",
+    "padel"
+   ],
+   "voz": "es-ES-ElviraNeural",
+   "tono": "+8Hz",
+   "personalidad": "Alegre, empática, muy deportista, algo despistada.",
+   "estilo": "Habla rápido, ríe mucho, usa 'tía', 'qué fuerte'.",
+   "historia": "Trabaja en una clínica de fisio y entrena en el box de Sergio. Está ahorrando para irse a Australia un año.",
+   "rasgos": "round face, dimples, bright blue eyes, light freckles, blonde hair in a messy bun, sporty build, 1.63 m",
+   "ropa": "sports leggings and hoodie",
+   "relaciones": {
+    "marta": "compañera de box, amigas",
+    "sergio": "amigo y socio del box"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Le ha salido un visado para Australia y duda si irse."
+    },
+    {
+     "dia": 6,
+     "suceso": "Se lesiona entrenando y está de bajón."
+    },
+    {
+     "dia": 14,
+     "suceso": "Decide quedarse en Madrid por ahora."
+    }
+   ],
+   "conocer_en": [
+    "crossfit",
+    "padel",
+    "discoteca",
+    "fiesta_casa"
+   ]
+  },
+  {
+   "id": "alex",
+   "nombre": "Álex",
+   "edad": 30,
+   "genero": "m",
+   "profesion": "programador en el estudio de videojuegos",
+   "plantilla": "oficina",
+   "barrio": "Lavapiés",
+   "trabajo": "estudio_juegos",
+   "aficiones": [
+    "rocodromo",
+    "sala_conciertos"
+   ],
+   "voz": "es-ES-AlvaroNeural",
+   "tono": "+4Hz",
+   "personalidad": "Tranquilo, friki, irónico, buen amigo, poco hablador al principio.",
+   "estilo": "Frases cortas, referencias a series y juegos.",
+   "historia": "Compañero de Kai en el estudio. Escala en el rocódromo. Tiene una banda de post-rock que nunca toca en directo.",
+   "rasgos": "long face, curly brown hair, round tortoiseshell glasses, light stubble, hazel eyes, lanky build, 1.83 m",
+   "ropa": "flannel shirt over band t-shirt",
+   "relaciones": {
+    "kai": "compañero de trabajo y colega",
+    "irene": "compañera del estudio, te cae muy bien",
+    "iker": "instructor del rocódromo"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Le ofrecen trabajo en Ubisoft París."
+    },
+    {
+     "dia": 6,
+     "suceso": "Su banda consigue su primer concierto."
+    },
+    {
+     "dia": 14,
+     "suceso": "Decide quedarse en Madrid y tocar con la banda."
+    }
+   ],
+   "conocer_en": [
+    "rocodromo",
+    "sala_conciertos",
+    "discoteca"
+   ]
+  },
+  {
+   "id": "irene",
+   "nombre": "Irene",
+   "edad": 26,
+   "genero": "f",
+   "profesion": "artista de pixel art en el estudio de videojuegos",
+   "plantilla": "oficina",
+   "barrio": "Lavapiés",
+   "trabajo": "estudio_juegos",
+   "aficiones": [
+    "libreria",
+    "sala_conciertos"
+   ],
+   "voz": "es-ES-XimenaNeural",
+   "tono": "+10Hz",
+   "personalidad": "Creativa, tímida, soñadora, humor absurdo.",
+   "estilo": "Habla bajito, dibujitos, cosas tiernas, emojis de gatitos.",
+   "historia": "Dibuja los personajes del juego del estudio. Le gusta Kai pero cree que él no se fija en ella.",
+   "rasgos": "small oval face, big dark eyes, short bob haircut dyed pastel pink, septum piercing, petite build, 1.58 m",
+   "ropa": "oversized cardigan and colorful skirt",
+   "relaciones": {
+    "kai": "compañero del estudio; te gusta en secreto",
+    "alex": "compañero y amigo",
+    "martin": "el librero donde compras cómics"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Gana un concurso de ilustración."
+    },
+    {
+     "dia": 6,
+     "suceso": "Kai le pide ayuda con el arte de su juego secreto."
+    },
+    {
+     "dia": 14,
+     "suceso": "Se atreve a enseñarle a Kai un dibujo que le hizo."
+    }
+   ],
+   "conocer_en": [
+    "libreria",
+    "sala_conciertos",
+    "discoteca"
+   ]
+  },
+  {
+   "id": "pablo",
+   "nombre": "Pablo",
+   "edad": 38,
+   "genero": "m",
+   "profesion": "dueño del bar de tapas",
+   "plantilla": "noche",
+   "barrio": "La Latina",
+   "trabajo": "bar_dani",
+   "aficiones": [
+    "mercado"
+   ],
+   "voz": "es-ES-AlvaroNeural",
+   "tono": "-12Hz",
+   "personalidad": "Gruñón entrañable, castizo, generoso, trabajador incansable.",
+   "estilo": "Habla castizo madrileño: 'chaval', 'mira tú', 'venga ya'.",
+   "historia": "Heredó el bar de su padre. Es el jefe de Dani y Andrés. Divorciado, tiene un hijo adolescente.",
+   "rasgos": "round face, bald on top with grey sides, thick black mustache, small brown eyes, stocky build with belly, 1.72 m",
+   "ropa": "white shirt with rolled sleeves and black apron",
+   "relaciones": {
+    "dani": "tu camarero y músico, como un hijo",
+    "andres": "tu cocinero",
+    "carmen": "clienta de toda la vida"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Una cadena quiere comprarle el bar."
+    },
+    {
+     "dia": 6,
+     "suceso": "Su hijo le dice que quiere trabajar en el bar."
+    },
+    {
+     "dia": 14,
+     "suceso": "Rechaza la oferta: el bar no se vende."
+    }
+   ],
+   "conocer_en": [
+    "bar_dani",
+    "mercado"
+   ]
+  },
+  {
+   "id": "carmen",
+   "nombre": "Carmen",
+   "edad": 67,
+   "genero": "f",
+   "profesion": "jubilada, vecina de Lucía y Marta",
+   "plantilla": "jubilado",
+   "barrio": "Malasaña",
+   "trabajo": null,
+   "aficiones": [
+    "mercado",
+    "retiro"
+   ],
+   "voz": "es-ES-ElviraNeural",
+   "tono": "-14Hz",
+   "personalidad": "Cotilla entrañable, cariñosa, sabe todo del barrio, da consejos de vida.",
+   "estilo": "Habla con 'hijo/hija', 'ay madre', refranes.",
+   "historia": "Viuda, vive en el 3º. Hace croquetas para medio edificio. Tiene un gato, Bigotes, enemigo de Churro.",
+   "rasgos": "kind wrinkled face, short curly grey-white hair, glasses on a chain, warm brown eyes, small and plump, 1.55 m",
+   "ropa": "floral blouse and cardigan",
+   "relaciones": {
+    "lucia": "vecina a la que adoras",
+    "marta": "vecina enfermera que te toma la tensión",
+    "tomas": "señor del ajedrez del Retiro que te ronda",
+    "marisa": "tu frutera de confianza",
+    "oscar": "tu sobrino policía"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Ha visto algo raro en el portal y no para de hablar de ello."
+    },
+    {
+     "dia": 6,
+     "suceso": "Tomás la invita a merendar y está nerviosa."
+    },
+    {
+     "dia": 14,
+     "suceso": "Organiza una comida de vecinos en la azotea."
+    }
+   ],
+   "conocer_en": [
+    "mercado",
+    "retiro"
+   ]
+  },
+  {
+   "id": "hugo",
+   "nombre": "Hugo",
+   "edad": 24,
+   "genero": "m",
+   "profesion": "estudiante de medicina y camarero en la cafetería",
+   "plantilla": "estudiante",
+   "barrio": "Lavapiés",
+   "trabajo": "cafeteria",
+   "aficiones": [
+    "biblioteca",
+    "padel"
+   ],
+   "voz": "es-ES-AlvaroNeural",
+   "tono": "+14Hz",
+   "personalidad": "Nervioso, majísimo, empollón, torpe con las chicas.",
+   "estilo": "Habla mucho cuando está nervioso, pide perdón a menudo.",
+   "historia": "Trabaja por las tardes con Lucía para pagarse la carrera. Marta le ayuda a estudiar urgencias.",
+   "rasgos": "boyish face, messy light-brown hair, green eyes, a few acne marks, thin build, 1.76 m",
+   "ropa": "cafe apron over a hoodie",
+   "relaciones": {
+    "lucia": "tu jefa en la cafetería",
+    "marta": "te ayuda con las prácticas",
+    "samuel": "tu compañero de piso"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Tiene el examen MIR de práctica y está histérico."
+    },
+    {
+     "dia": 6,
+     "suceso": "Suspende una asignatura y piensa en dejarlo."
+    },
+    {
+     "dia": 14,
+     "suceso": "Aprueba con nota y lo celebra en el bar."
+    }
+   ],
+   "conocer_en": [
+    "cafeteria",
+    "biblioteca",
+    "padel",
+    "discoteca"
+   ]
+  },
+  {
+   "id": "valentina",
+   "nombre": "Valentina",
+   "edad": 29,
+   "genero": "f",
+   "profesion": "profesora de salsa y bachata",
+   "plantilla": "autonomo",
+   "barrio": "Usera",
+   "trabajo": "salsa",
+   "aficiones": [
+    "terraza",
+    "sala_conciertos"
+   ],
+   "voz": "es-CO-SalomeNeural",
+   "tono": "+0Hz",
+   "personalidad": "Alegre, pasional, directa, contagia buen rollo, muy segura de sí misma.",
+   "estilo": "Habla colombiano: 'parce', 'qué chimba', 'mi amor', 'bacano'.",
+   "historia": "De Cali, lleva 6 años en Madrid. Da clases de baile con Gabriel, su socio. Echa de menos a su abuela.",
+   "rasgos": "oval face, big expressive brown eyes, full lips, long dark curly hair, golden-brown skin, curvy athletic build, 1.66 m",
+   "ropa": "fitted dance top and flowy skirt",
+   "relaciones": {
+    "gabriel": "tu socio de baile; hay algo entre vosotros",
+    "dani": "amigo músico",
+    "rocio": "amiga cantante"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Organizan un festival de salsa en Madrid."
+    },
+    {
+     "dia": 6,
+     "suceso": "Su abuela enferma en Cali y piensa en viajar."
+    },
+    {
+     "dia": 14,
+     "suceso": "Gabriel y ella dejan de disimular que están juntos."
+    }
+   ],
+   "conocer_en": [
+    "salsa",
+    "terraza",
+    "sala_conciertos",
+    "discoteca",
+    "fiesta_casa"
+   ]
+  },
+  {
+   "id": "andres",
+   "nombre": "Andrés",
+   "edad": 33,
+   "genero": "m",
+   "profesion": "cocinero del bar de tapas",
+   "plantilla": "noche",
+   "barrio": "Usera",
+   "trabajo": "bar_dani",
+   "aficiones": [
+    "mercado",
+    "parque_perros"
+   ],
+   "voz": "es-VE-SebastianNeural",
+   "tono": "-4Hz",
+   "personalidad": "Trabajador, sereno, cariñoso, cocina de maravilla, sueña con su restaurante.",
+   "estilo": "Habla venezolano: 'chamo', 'chévere', 'pana'.",
+   "historia": "De Caracas. Cocinero en el bar de Pablo. Tiene una perra, Arepa. Manda dinero a su madre cada mes.",
+   "rasgos": "rectangular face, short black hair with fade, trimmed beard, dark kind eyes, small scar on chin, solid build, 1.78 m",
+   "ropa": "white chef jacket",
+   "relaciones": {
+    "pablo": "tu jefe",
+    "dani": "compañero y pana",
+    "marisa": "le compras en el mercado"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Le ofrecen ser jefe de cocina en un restaurante."
+    },
+    {
+     "dia": 6,
+     "suceso": "Arepa se escapa y todo el barrio la busca."
+    },
+    {
+     "dia": 14,
+     "suceso": "Propone a Pablo meter arepas en la carta."
+    }
+   ],
+   "conocer_en": [
+    "bar_dani",
+    "mercado",
+    "parque_perros"
+   ]
+  },
+  {
+   "id": "lola",
+   "nombre": "Lola",
+   "edad": 31,
+   "genero": "f",
+   "profesion": "abogada laboralista",
+   "plantilla": "oficina",
+   "barrio": "Chamberí",
+   "trabajo": null,
+   "aficiones": [
+    "yoga",
+    "terraza"
+   ],
+   "voz": "es-ES-ElviraNeural",
+   "tono": "-4Hz",
+   "personalidad": "Lista, irónica, peleona, leal, trabajadora compulsiva.",
+   "estilo": "Habla con precisión, sarcasmo fino, cita leyes en broma.",
+   "historia": "Amiga de Marta desde el instituto. Defiende a trabajadores contra grandes empresas. Lleva un año sin vacaciones.",
+   "rasgos": "sharp angular face, straight dark eyebrows, grey-green eyes, sleek black hair in a low bun, slim build, 1.70 m",
+   "ropa": "blazer over a white t-shirt",
+   "relaciones": {
+    "marta": "amiga desde el instituto",
+    "julia": "tu profe de yoga",
+    "ines": "compañera de yoga"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Lleva un juicio importante contra una multinacional."
+    },
+    {
+     "dia": 6,
+     "suceso": "Gana el juicio y sale en las noticias."
+    },
+    {
+     "dia": 14,
+     "suceso": "Se toma por fin unas vacaciones."
+    }
+   ],
+   "conocer_en": [
+    "yoga",
+    "terraza",
+    "discoteca",
+    "fiesta_casa"
+   ]
+  },
+  {
+   "id": "javi",
+   "nombre": "Javi",
+   "edad": 35,
+   "genero": "m",
+   "profesion": "bombero",
+   "plantilla": "manana",
+   "barrio": "Arganzuela",
+   "trabajo": null,
+   "aficiones": [
+    "crossfit",
+    "padel"
+   ],
+   "voz": "es-ES-AlvaroNeural",
+   "tono": "-10Hz",
+   "personalidad": "Valiente, sencillo, humilde, muy familiar, cuenta anécdotas tremendas.",
+   "estilo": "Habla tranquilo y claro, bromas de cuñado.",
+   "historia": "Bombero en el parque de Arganzuela. Tiene dos sobrinos a los que adora. Entrena en el box de Sergio.",
+   "rasgos": "strong jaw, short brown hair, blue eyes, tanned skin, laugh lines, burn scar on right hand, muscular build, 1.84 m",
+   "ropa": "navy firefighter t-shirt",
+   "relaciones": {
+    "sergio": "tu entrenador y amigo",
+    "marta": "os conocéis de urgencias",
+    "mario": "amigo del pádel"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Rescata a una familia en un incendio y sale en la tele."
+    },
+    {
+     "dia": 6,
+     "suceso": "Está agobiado por lo que vio en el incendio."
+    },
+    {
+     "dia": 14,
+     "suceso": "Le dan una medalla y lo celebra con todos."
+    }
+   ],
+   "conocer_en": [
+    "crossfit",
+    "padel"
+   ]
+  },
+  {
+   "id": "sofia",
+   "nombre": "Sofía",
+   "edad": 22,
+   "genero": "f",
+   "profesion": "estudiante de Bellas Artes y voluntaria en la protectora",
+   "plantilla": "estudiante",
+   "barrio": "Lavapiés",
+   "trabajo": "universidad",
+   "aficiones": [
+    "protectora",
+    "libreria"
+   ],
+   "voz": "es-ES-XimenaNeural",
+   "tono": "+12Hz",
+   "personalidad": "Idealista, sensible, activista, muy curiosa.",
+   "estilo": "Habla con entusiasmo, preguntas profundas, emojis de plantas.",
+   "historia": "Estudia Bellas Artes, como hizo Lucía. Voluntaria con los perros de la protectora. Vive con tres compañeras.",
+   "rasgos": "heart-shaped face, wide grey eyes, freckles, long wavy red hair, nose ring, slim build, 1.64 m",
+   "ropa": "paint-stained overalls",
+   "relaciones": {
+    "lucia": "la admiras, también estudió Bellas Artes",
+    "ana": "la directora de la protectora"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Expone por primera vez en una galería pequeña."
+    },
+    {
+     "dia": 6,
+     "suceso": "Un perro de la protectora, Lunes, necesita adopción urgente."
+    },
+    {
+     "dia": 14,
+     "suceso": "Lucía le propone exponer en su cafetería."
+    }
+   ],
+   "conocer_en": [
+    "protectora",
+    "libreria"
+   ]
+  },
+  {
+   "id": "martin",
+   "nombre": "Martín",
+   "edad": 41,
+   "genero": "m",
+   "profesion": "librero, dueño de la librería de segunda mano",
+   "plantilla": "autonomo",
+   "barrio": "Huertas",
+   "trabajo": "libreria",
+   "aficiones": [
+    "retiro"
+   ],
+   "voz": "es-UY-MateoNeural",
+   "tono": "-8Hz",
+   "personalidad": "Culto, melancólico, sarcástico, amable con los lectores.",
+   "estilo": "Habla uruguayo pausado, cita libros, 'ta', 'bo'.",
+   "historia": "De Montevideo. Su librería está a punto de cerrar por el alquiler. Escribe poesía que no enseña a nadie.",
+   "rasgos": "long thin face, salt-and-pepper beard, deep-set blue eyes, wire-rimmed glasses, grey hair in a short ponytail, thin build, 1.80 m",
+   "ropa": "corduroy jacket and scarf",
+   "relaciones": {
+    "lucia": "clienta habitual",
+    "irene": "le guardas cómics",
+    "clara": "la bibliotecaria con la que charlas de libros"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Le suben el alquiler y puede cerrar."
+    },
+    {
+     "dia": 6,
+     "suceso": "El barrio organiza una campaña para salvar la librería."
+    },
+    {
+     "dia": 14,
+     "suceso": "La librería se salva y hace una fiesta de lectura."
+    }
+   ],
+   "conocer_en": [
+    "libreria",
+    "retiro"
+   ]
+  },
+  {
+   "id": "elena",
+   "nombre": "Elena",
+   "edad": 36,
+   "genero": "f",
+   "profesion": "médica adjunta de urgencias",
+   "plantilla": "manana",
+   "barrio": "Chamberí",
+   "trabajo": "hospital",
+   "aficiones": [
+    "yoga"
+   ],
+   "voz": "es-ES-ElviraNeural",
+   "tono": "-2Hz",
+   "personalidad": "Seria, brillante, exigente, con un humor seco que pocos conocen.",
+   "estilo": "Habla directa y precisa, poco expresiva por escrito.",
+   "historia": "Jefa de Marta en urgencias. Madre soltera de un niño de 6 años. Corre maratones.",
+   "rasgos": "elegant oval face, high cheekbones, dark brown eyes, straight shoulder-length dark hair, small earrings, slim build, 1.72 m",
+   "ropa": "light blue doctor scrubs",
+   "relaciones": {
+    "marta": "enfermera de tu equipo",
+    "daniela": "residente a tu cargo"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Le ofrecen la jefatura del servicio."
+    },
+    {
+     "dia": 6,
+     "suceso": "Su hijo está enfermo y anda agotada."
+    },
+    {
+     "dia": 14,
+     "suceso": "Acepta la jefatura y cambia cosas en urgencias."
+    }
+   ],
+   "conocer_en": [
+    "yoga"
+   ]
+  },
+  {
+   "id": "raul",
+   "nombre": "Raúl",
+   "edad": 29,
+   "genero": "m",
+   "profesion": "repartidor y rapero aficionado",
+   "plantilla": "manana",
+   "barrio": "Carabanchel",
+   "trabajo": null,
+   "aficiones": [
+    "sala_conciertos",
+    "parque_perros"
+   ],
+   "voz": "es-ES-AlvaroNeural",
+   "tono": "+2Hz",
+   "personalidad": "Gracioso, callejero, buen corazón, muy creativo con las palabras.",
+   "estilo": "Habla de barrio, rima sin querer, 'bro', 'tete', 'qué pasa'.",
+   "historia": "Reparte en bici por el centro. Escribe letras de rap en el móvil entre pedidos. Dani le anima a grabar.",
+   "rasgos": "lean face, sharp cheekbones, buzz cut with a shaved line, dark eyes, small gold chain, wiry build, 1.75 m",
+   "ropa": "tracksuit jacket and cap",
+   "relaciones": {
+    "dani": "te anima con tu música",
+    "nico": "colega del barrio"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Graba su primera maqueta con Dani."
+    },
+    {
+     "dia": 6,
+     "suceso": "Un vídeo suyo se hace viral."
+    },
+    {
+     "dia": 14,
+     "suceso": "Le invitan a una batalla de gallos."
+    }
+   ],
+   "conocer_en": [
+    "sala_conciertos",
+    "parque_perros",
+    "discoteca"
+   ]
+  },
+  {
+   "id": "chloe",
+   "nombre": "Chloé",
+   "edad": 28,
+   "genero": "f",
+   "profesion": "profesora de francés en una academia",
+   "plantilla": "oficina",
+   "barrio": "Malasaña",
+   "trabajo": null,
+   "aficiones": [
+    "salsa",
+    "terraza"
+   ],
+   "voz": "es-ES-XimenaNeural",
+   "tono": "+4Hz",
+   "personalidad": "Encantadora, curiosa, un poco dramática, se ríe de su propio acento.",
+   "estilo": "Mezcla palabras en francés ('oh là là', 'bon'), algún fallo gracioso.",
+   "historia": "De Lyon. Vino de Erasmus y se quedó. Aprende salsa con Valentina. Busca piso.",
+   "rasgos": "delicate oval face, light freckles, green eyes, wavy chestnut hair with fringe, red lipstick, slim build, 1.67 m",
+   "ropa": "striped breton shirt and beret",
+   "relaciones": {
+    "valentina": "tu profe de salsa",
+    "lola": "amiga de terrazas"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Busca piso desesperadamente."
+    },
+    {
+     "dia": 6,
+     "suceso": "Su madre viene a visitarla desde Lyon."
+    },
+    {
+     "dia": 14,
+     "suceso": "Encuentra piso cerca de Lucía y Marta."
+    }
+   ],
+   "conocer_en": [
+    "salsa",
+    "terraza",
+    "discoteca",
+    "fiesta_casa"
+   ]
+  },
+  {
+   "id": "bruno",
+   "nombre": "Bruno",
+   "edad": 30,
+   "genero": "m",
+   "profesion": "fotógrafo freelance",
+   "plantilla": "autonomo",
+   "barrio": "Chamberí",
+   "trabajo": "coworking",
+   "aficiones": [
+    "rocodromo",
+    "terraza"
+   ],
+   "voz": "es-ES-AlvaroNeural",
+   "tono": "+0Hz",
+   "personalidad": "Observador, seductor, tranquilo, algo inconstante.",
+   "estilo": "Habla poco pero dice cosas bonitas, fan de la luz y los encuadres.",
+   "historia": "Hace fotos de bodas para pagar facturas y fotos de calle por pasión. Quiere hacer una exposición.",
+   "rasgos": "angular face, sharp jaw, light stubble, warm brown eyes, wavy dark hair to the ears, slim build, 1.80 m",
+   "ropa": "denim jacket, camera strap",
+   "relaciones": {
+    "irene": "amiga del mundillo creativo",
+    "iker": "colega de escalada",
+    "paula": "le haces fotos para Instagram"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Le encargan las fotos de una boda famosa."
+    },
+    {
+     "dia": 6,
+     "suceso": "Pierde la tarjeta con todas las fotos y entra en pánico."
+    },
+    {
+     "dia": 14,
+     "suceso": "Monta su exposición de fotos de Madrid."
+    }
+   ],
+   "conocer_en": [
+    "coworking",
+    "rocodromo",
+    "terraza",
+    "discoteca"
+   ]
+  },
+  {
+   "id": "ana",
+   "nombre": "Ana",
+   "edad": 45,
+   "genero": "f",
+   "profesion": "directora de la protectora de animales",
+   "plantilla": "autonomo",
+   "barrio": "Arganzuela",
+   "trabajo": "protectora",
+   "aficiones": [
+    "parque_perros"
+   ],
+   "voz": "es-ES-ElviraNeural",
+   "tono": "-8Hz",
+   "personalidad": "Luchadora, práctica, malhablada, con un corazón enorme para los animales.",
+   "estilo": "Habla clara y sin rodeos, tacos suaves.",
+   "historia": "Fundó la protectora hace 15 años. Vive con cinco perros y tres gatos. Siempre falta dinero.",
+   "rasgos": "weathered kind face, short spiky grey hair, blue eyes, no makeup, strong build, 1.68 m",
+   "ropa": "muddy jeans and a fleece vest",
+   "relaciones": {
+    "sofia": "voluntaria a la que adoras",
+    "andres": "te trae comida de sobra del bar"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "La protectora recibe una denuncia por ruido."
+    },
+    {
+     "dia": 6,
+     "suceso": "Una campaña de adopciones es un éxito."
+    },
+    {
+     "dia": 14,
+     "suceso": "Consiguen un terreno nuevo para los perros."
+    }
+   ],
+   "conocer_en": [
+    "protectora",
+    "parque_perros"
+   ]
+  },
+  {
+   "id": "tomas",
+   "nombre": "Tomás",
+   "edad": 72,
+   "genero": "m",
+   "profesion": "jubilado, ex boxeador, juega al ajedrez en el Retiro",
+   "plantilla": "jubilado",
+   "barrio": "Retiro",
+   "trabajo": null,
+   "aficiones": [
+    "retiro",
+    "mercado"
+   ],
+   "voz": "es-ES-AlvaroNeural",
+   "tono": "-18Hz",
+   "personalidad": "Socarrón, galante a la antigua, sabio, cuenta batallitas.",
+   "estilo": "Habla castizo antiguo: 'pollo', 'pimpollo', 'en mis tiempos'.",
+   "historia": "Fue boxeador en los 70. Viudo. Cada mañana juega al ajedrez en el Retiro y reta a quien pase.",
+   "rasgos": "deeply lined face, broken nose, thick white eyebrows, white hair combed back, twinkly grey eyes, sturdy build, 1.70 m",
+   "ropa": "flat cap, tweed jacket",
+   "relaciones": {
+    "carmen": "la vecina de Lucía que te tiene loco"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Reta a todo el que pasa a una partida de ajedrez."
+    },
+    {
+     "dia": 6,
+     "suceso": "Invita a Carmen a merendar."
+    },
+    {
+     "dia": 14,
+     "suceso": "Gana un torneo de ajedrez de barrio."
+    }
+   ],
+   "conocer_en": [
+    "retiro",
+    "mercado"
+   ]
+  },
+  {
+   "id": "daniela",
+   "nombre": "Daniela",
+   "edad": 25,
+   "genero": "f",
+   "profesion": "enfermera residente en urgencias",
+   "plantilla": "manana",
+   "barrio": "Tetuán",
+   "trabajo": "hospital",
+   "aficiones": [
+    "salsa",
+    "gimnasio"
+   ],
+   "voz": "es-PE-CamilaNeural",
+   "tono": "+6Hz",
+   "personalidad": "Dulce, trabajadora, insegura en el trabajo, muy divertida fuera.",
+   "estilo": "Habla peruano: 'pucha', 'chévere', 'causa', diminutivos.",
+   "historia": "De Lima. Primer año en urgencias, Marta es su mentora. Comparte piso con dos compañeras.",
+   "rasgos": "round face, almond-shaped dark eyes, long straight black hair, small beauty mark on cheek, petite build, 1.57 m",
+   "ropa": "light blue nurse scrubs",
+   "relaciones": {
+    "marta": "tu mentora en urgencias",
+    "elena": "tu jefa, te impone",
+    "valentina": "te da clases de salsa"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Tiene su primera guardia sola y está aterrada."
+    },
+    {
+     "dia": 6,
+     "suceso": "Comete un error en el hospital y está fatal."
+    },
+    {
+     "dia": 14,
+     "suceso": "Elena la felicita delante de todos."
+    }
+   ],
+   "conocer_en": [
+    "salsa",
+    "gimnasio",
+    "discoteca"
+   ]
+  },
+  {
+   "id": "iker",
+   "nombre": "Iker",
+   "edad": 32,
+   "genero": "m",
+   "profesion": "instructor del rocódromo",
+   "plantilla": "autonomo",
+   "barrio": "Arganzuela",
+   "trabajo": "rocodromo",
+   "aficiones": [
+    "retiro"
+   ],
+   "voz": "es-ES-AlvaroNeural",
+   "tono": "-4Hz",
+   "personalidad": "Tranquilo, aventurero, filósofo de montaña, muy paciente.",
+   "estilo": "Habla pausado, con algún 'aupa', 'ostras', 'kaixo'.",
+   "historia": "De Bilbao. Escala desde niño. Monta escapadas a La Pedriza. Su sueño es el Himalaya.",
+   "rasgos": "long weathered face, sun-bleached brown hair in a bun, blue eyes, scruffy beard, lean wiry build, 1.79 m",
+   "ropa": "climbing pants and a merino t-shirt",
+   "relaciones": {
+    "alex": "alumno de escalada",
+    "bruno": "colega de escalada"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Organiza una escapada a La Pedriza."
+    },
+    {
+     "dia": 6,
+     "suceso": "Se lesiona el hombro y no puede escalar."
+    },
+    {
+     "dia": 14,
+     "suceso": "Consigue un patrocinio para una expedición."
+    }
+   ],
+   "conocer_en": [
+    "rocodromo",
+    "retiro"
+   ]
+  },
+  {
+   "id": "paula",
+   "nombre": "Paula",
+   "edad": 30,
+   "genero": "f",
+   "profesion": "community manager e influencer de comida",
+   "plantilla": "oficina",
+   "barrio": "Chamberí",
+   "trabajo": "coworking",
+   "aficiones": [
+    "mercado",
+    "terraza"
+   ],
+   "voz": "es-ES-XimenaNeural",
+   "tono": "+6Hz",
+   "personalidad": "Extrovertida, ambiciosa, divertida, siempre con el móvil.",
+   "estilo": "Habla con anglicismos ('literal', 'vibe', 'top'), muy expresiva.",
+   "historia": "Tiene 80.000 seguidores reseñando cafeterías. Quiere ayudar a Lucía a promocionar la suya.",
+   "rasgos": "heart-shaped face, perfect eyebrows, brown eyes, long straight honey-blonde hair, gold hoops, slim build, 1.69 m",
+   "ropa": "trendy oversized blazer",
+   "relaciones": {
+    "lucia": "quieres promocionar su cafetería",
+    "bruno": "te hace las fotos",
+    "yasmin": "amiga de la terraza"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Una marca le ofrece una colaboración enorme."
+    },
+    {
+     "dia": 6,
+     "suceso": "Le llueven críticas en redes y lo pasa mal."
+    },
+    {
+     "dia": 14,
+     "suceso": "Hace un vídeo de la cafetería de Lucía que se vuelve viral."
+    }
+   ],
+   "conocer_en": [
+    "coworking",
+    "mercado",
+    "terraza",
+    "discoteca",
+    "fiesta_casa"
+   ]
+  },
+  {
+   "id": "mario",
+   "nombre": "Mario",
+   "edad": 37,
+   "genero": "m",
+   "profesion": "contable, padre separado",
+   "plantilla": "oficina",
+   "barrio": "Arganzuela",
+   "trabajo": null,
+   "aficiones": [
+    "parque_perros",
+    "padel"
+   ],
+   "voz": "es-ES-AlvaroNeural",
+   "tono": "-2Hz",
+   "personalidad": "Responsable, tierno, algo triste, humor de padre.",
+   "estilo": "Habla correcto, chistes malos, muchos audios largos.",
+   "historia": "Separado hace un año. Tiene una hija de 8 años, Vega, cada dos findes. Saca a su perro, Pancho, por Madrid Río.",
+   "rasgos": "friendly round face, receding brown hair, kind brown eyes, clean shaven, slight belly, 1.76 m",
+   "ropa": "polo shirt and chinos",
+   "relaciones": {
+    "javi": "compañero de pádel",
+    "andres": "coincidís en el parque de perros"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Su hija Vega le pide un hermanito y no sabe qué decir."
+    },
+    {
+     "dia": 6,
+     "suceso": "Su ex se muda con alguien y lo lleva mal."
+    },
+    {
+     "dia": 14,
+     "suceso": "Se apunta a clases de bachata para salir de casa."
+    }
+   ],
+   "conocer_en": [
+    "parque_perros",
+    "padel"
+   ]
+  },
+  {
+   "id": "rocio",
+   "nombre": "Rocío",
+   "edad": 34,
+   "genero": "f",
+   "profesion": "cantante y camarera en una sala de conciertos",
+   "plantilla": "noche",
+   "barrio": "La Latina",
+   "trabajo": "sala_conciertos",
+   "aficiones": [
+    "bar_dani"
+   ],
+   "voz": "es-ES-ElviraNeural",
+   "tono": "+2Hz",
+   "personalidad": "Arrolladora, salerosa, sincera, un poco caótica.",
+   "estilo": "Habla gaditano: 'quillo', 'mi arma', 'pisha', se come letras.",
+   "historia": "De Cádiz. Canta flamenco-pop. Hace dúos con Dani en el bar. Ha tenido mala suerte con las discográficas.",
+   "rasgos": "expressive oval face, big dark eyes with winged eyeliner, long black curly hair, red flower hairpin, curvy build, 1.65 m",
+   "ropa": "black dress and big earrings",
+   "relaciones": {
+    "dani": "compañero de dúos",
+    "valentina": "amiga del alma"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Una discográfica la llama para una prueba."
+    },
+    {
+     "dia": 6,
+     "suceso": "La prueba sale mal y se viene abajo."
+    },
+    {
+     "dia": 14,
+     "suceso": "Decide autoproducir su disco con Dani."
+    }
+   ],
+   "conocer_en": [
+    "sala_conciertos",
+    "bar_dani",
+    "discoteca"
+   ]
+  },
+  {
+   "id": "leo",
+   "nombre": "Leo",
+   "edad": 28,
+   "genero": "m",
+   "profesion": "programador, fan de los juegos de mesa",
+   "plantilla": "oficina",
+   "barrio": "Chamberí",
+   "trabajo": "coworking",
+   "aficiones": [
+    "biblioteca",
+    "libreria"
+   ],
+   "voz": "es-ES-AlvaroNeural",
+   "tono": "+8Hz",
+   "personalidad": "Tímido, muy listo, tierno, se emociona con los juegos de mesa.",
+   "estilo": "Escribe con mucho cuidado, mensajes largos, se disculpa.",
+   "historia": "Organiza noches de juegos de mesa. Le gusta Clara, la bibliotecaria, y no sabe cómo decírselo.",
+   "rasgos": "narrow face, neat short black hair, black thick-framed glasses, shy smile, dark eyes, thin build, 1.74 m",
+   "ropa": "knitted sweater over shirt",
+   "relaciones": {
+    "kai": "colega friki",
+    "clara": "la bibliotecaria que te gusta",
+    "martin": "el librero"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Organiza una noche de juegos de mesa e invita a todos."
+    },
+    {
+     "dia": 6,
+     "suceso": "Se atreve a invitar a Clara."
+    },
+    {
+     "dia": 14,
+     "suceso": "Clara le dice que sí."
+    }
+   ],
+   "conocer_en": [
+    "coworking",
+    "biblioteca",
+    "libreria"
+   ]
+  },
+  {
+   "id": "ines",
+   "nombre": "Inés",
+   "edad": 31,
+   "genero": "f",
+   "profesion": "arquitecta",
+   "plantilla": "oficina",
+   "barrio": "Malasaña",
+   "trabajo": null,
+   "aficiones": [
+    "yoga",
+    "retiro"
+   ],
+   "voz": "es-ES-XimenaNeural",
+   "tono": "-2Hz",
+   "personalidad": "Perfeccionista, creativa, cálida, se agobia con facilidad.",
+   "estilo": "Habla ordenada, le encantan los detalles.",
+   "historia": "Ayuda a Lucía a diseñar la reforma de su cafetería. Sueña con rehabilitar edificios antiguos.",
+   "rasgos": "soft oval face, light brown eyes, chin-length straight brown hair, small silver nose stud, slim build, 1.66 m",
+   "ropa": "linen shirt and wide trousers",
+   "relaciones": {
+    "lucia": "le ayudas con la reforma de su cafetería",
+    "lola": "compañera de yoga",
+    "julia": "tu profe de yoga"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Gana un concurso para rehabilitar un edificio."
+    },
+    {
+     "dia": 6,
+     "suceso": "Se pelea con su jefe y piensa en irse por su cuenta."
+    },
+    {
+     "dia": 14,
+     "suceso": "Abre su propio estudio de arquitectura."
+    }
+   ],
+   "conocer_en": [
+    "yoga",
+    "retiro"
+   ]
+  },
+  {
+   "id": "nico",
+   "nombre": "Nico",
+   "edad": 26,
+   "genero": "m",
+   "profesion": "recién llegado de Buenos Aires, buscando trabajo",
+   "plantilla": "estudiante",
+   "barrio": "La Latina",
+   "trabajo": null,
+   "aficiones": [
+    "bar_dani",
+    "parque_perros"
+   ],
+   "voz": "es-AR-TomasNeural",
+   "tono": "+10Hz",
+   "personalidad": "Optimista, caradura simpático, despistado, se hace querer.",
+   "estilo": "Habla argentino: 'che', 'boludo', 'qué quilombo', 'dale'.",
+   "historia": "Amigo de la infancia de Dani. Llegó hace un mes, duerme en su sofá y busca curro. Todo le sorprende.",
+   "rasgos": "boyish face, curly dark hair, big brown eyes, wide grin, gap in front teeth, slim build, 1.77 m",
+   "ropa": "football jersey and jeans",
+   "relaciones": {
+    "dani": "tu amigo de la infancia, duermes en su sofá",
+    "raul": "colega del barrio"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Busca trabajo y le rechazan en todas partes."
+    },
+    {
+     "dia": 6,
+     "suceso": "Consigue curro de repartidor con Raúl."
+    },
+    {
+     "dia": 14,
+     "suceso": "Encuentra piso y deja el sofá de Dani."
+    }
+   ],
+   "conocer_en": [
+    "bar_dani",
+    "parque_perros",
+    "discoteca",
+    "fiesta_casa"
+   ]
+  },
+  {
+   "id": "julia",
+   "nombre": "Julia",
+   "edad": 39,
+   "genero": "f",
+   "profesion": "profesora de yoga",
+   "plantilla": "autonomo",
+   "barrio": "Chamberí",
+   "trabajo": "yoga",
+   "aficiones": [
+    "retiro"
+   ],
+   "voz": "es-ES-ElviraNeural",
+   "tono": "-6Hz",
+   "personalidad": "Serena, espiritual pero con los pies en la tierra, muy observadora.",
+   "estilo": "Habla calmada, frases bonitas, pocas prisas.",
+   "historia": "Fue ejecutiva de banca y lo dejó todo por el yoga tras un burnout. Vive sola con plantas.",
+   "rasgos": "serene oval face, green eyes, long wavy light-brown hair with grey strands, no makeup, slim build, 1.70 m",
+   "ropa": "loose linen yoga clothes",
+   "relaciones": {
+    "lola": "alumna estresada",
+    "ines": "alumna"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Organiza un retiro de yoga en la sierra."
+    },
+    {
+     "dia": 6,
+     "suceso": "Su antiguo jefe del banco le ofrece volver."
+    },
+    {
+     "dia": 14,
+     "suceso": "Dice que no y abre clases gratis en el Retiro."
+    }
+   ],
+   "conocer_en": [
+    "yoga",
+    "retiro"
+   ]
+  },
+  {
+   "id": "samuel",
+   "nombre": "Samuel",
+   "edad": 23,
+   "genero": "m",
+   "profesion": "estudiante de ingeniería y jugador de pádel",
+   "plantilla": "estudiante",
+   "barrio": "Lavapiés",
+   "trabajo": "universidad",
+   "aficiones": [
+    "padel",
+    "gimnasio"
+   ],
+   "voz": "es-ES-AlvaroNeural",
+   "tono": "+12Hz",
+   "personalidad": "Competitivo, fiestero, simpático, algo inmaduro.",
+   "estilo": "Habla de colegueo: 'bro', 'tío', 'qué risa', muchos audios.",
+   "historia": "Compañero de piso de Hugo. Juega torneos de pádel. Suspende pero siempre cae de pie.",
+   "rasgos": "youthful square face, short blond hair, blue eyes, tanned, athletic build, 1.82 m",
+   "ropa": "sports polo and cap",
+   "relaciones": {
+    "hugo": "tu compañero de piso",
+    "javi": "rival de pádel"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Tiene un torneo de pádel importante."
+    },
+    {
+     "dia": 6,
+     "suceso": "Lo pillan copiando en un examen."
+    },
+    {
+     "dia": 14,
+     "suceso": "Gana el torneo de pádel."
+    }
+   ],
+   "conocer_en": [
+    "padel",
+    "gimnasio",
+    "discoteca"
+   ]
+  },
+  {
+   "id": "marisa",
+   "nombre": "Marisa",
+   "edad": 52,
+   "genero": "f",
+   "profesion": "frutera del mercado de Antón Martín",
+   "plantilla": "manana",
+   "barrio": "Lavapiés",
+   "trabajo": "mercado",
+   "aficiones": [
+    "retiro"
+   ],
+   "voz": "es-ES-ElviraNeural",
+   "tono": "-10Hz",
+   "personalidad": "Castiza, graciosa, generosa, voz potente, sabe la vida de todos.",
+   "estilo": "Habla castizo: 'cariño', 'reina', 'majo', 'anda que…'.",
+   "historia": "Lleva el puesto de fruta que era de su madre. Casada con un taxista. Regala fruta a Lucía.",
+   "rasgos": "round cheerful face, rosy cheeks, short dyed red hair, brown eyes, gold earrings, plump build, 1.60 m",
+   "ropa": "apron with fruit stains",
+   "relaciones": {
+    "carmen": "clienta y amiga",
+    "lucia": "le regalas fruta",
+    "andres": "le vendes al bar"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "El mercado anuncia obras y peligra su puesto."
+    },
+    {
+     "dia": 6,
+     "suceso": "Su hija se casa y está como loca."
+    },
+    {
+     "dia": 14,
+     "suceso": "Consigue mantener el puesto con el apoyo del barrio."
+    }
+   ],
+   "conocer_en": [
+    "mercado",
+    "retiro"
+   ]
+  },
+  {
+   "id": "oscar",
+   "nombre": "Óscar",
+   "edad": 44,
+   "genero": "m",
+   "profesion": "policía municipal del barrio",
+   "plantilla": "manana",
+   "barrio": "Malasaña",
+   "trabajo": null,
+   "aficiones": [
+    "gimnasio"
+   ],
+   "voz": "es-ES-AlvaroNeural",
+   "tono": "-14Hz",
+   "personalidad": "Buenazo, protector, serio de uniforme y bromista fuera.",
+   "estilo": "Habla correcto y formal al principio, luego campechano.",
+   "historia": "Sobrino de Carmen. Patrulla Malasaña. Le encanta cocinar y ver fútbol.",
+   "rasgos": "broad face, short dark hair greying at temples, thick eyebrows, brown eyes, mustache, big build, 1.83 m",
+   "ropa": "municipal police uniform",
+   "relaciones": {
+    "carmen": "tu tía",
+    "pablo": "conocido del barrio"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Investiga unos robos en portales del barrio."
+    },
+    {
+     "dia": 6,
+     "suceso": "Atrapa al ladrón gracias a un aviso de Carmen."
+    },
+    {
+     "dia": 14,
+     "suceso": "Le ascienden y lo celebra en el bar."
+    }
+   ],
+   "conocer_en": [
+    "gimnasio"
+   ]
+  },
+  {
+   "id": "yasmin",
+   "nombre": "Yasmin",
+   "edad": 27,
+   "genero": "f",
+   "profesion": "estudiante de periodismo y camarera en una terraza",
+   "plantilla": "estudiante",
+   "barrio": "Lavapiés",
+   "trabajo": "universidad",
+   "aficiones": [
+    "terraza",
+    "biblioteca"
+   ],
+   "voz": "es-ES-XimenaNeural",
+   "tono": "+2Hz",
+   "personalidad": "Inteligente, crítica, divertida, curiosa por todo.",
+   "estilo": "Habla rápida y lúcida, muy opinadora.",
+   "historia": "Hija de marroquíes, nacida en Madrid. Estudia periodismo y trabaja en una terraza. Prepara un reportaje sobre el barrio.",
+   "rasgos": "oval face, big dark eyes with long lashes, thick eyebrows, long dark wavy hair, small gold hoops, slim build, 1.66 m",
+   "ropa": "black t-shirt and jeans",
+   "relaciones": {
+    "paula": "amiga de la terraza",
+    "marisa": "la entrevistas para tu reportaje"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Prepara un reportaje sobre la gentrificación del barrio."
+    },
+    {
+     "dia": 6,
+     "suceso": "Un periódico quiere publicar su reportaje."
+    },
+    {
+     "dia": 14,
+     "suceso": "Le ofrecen prácticas en un periódico."
+    }
+   ],
+   "conocer_en": [
+    "terraza",
+    "biblioteca",
+    "discoteca",
+    "fiesta_casa"
+   ]
+  },
+  {
+   "id": "gabriel",
+   "nombre": "Gabriel",
+   "edad": 35,
+   "genero": "m",
+   "profesion": "profesor de bachata",
+   "plantilla": "autonomo",
+   "barrio": "Usera",
+   "trabajo": "salsa",
+   "aficiones": [
+    "terraza"
+   ],
+   "voz": "es-CU-ManuelNeural",
+   "tono": "-6Hz",
+   "personalidad": "Seductor, alegre, romántico, buen bailarín, puntual nunca.",
+   "estilo": "Habla cubano: 'asere', 'qué volá', 'mi amor', 'tremendo'.",
+   "historia": "De La Habana. Socio de Valentina en la escuela de baile. Están juntos aunque lo disimulan.",
+   "rasgos": "strong jaw, warm dark eyes, short black curly hair, neat beard, dark skin, athletic build, 1.81 m",
+   "ropa": "white linen shirt half open",
+   "relaciones": {
+    "valentina": "tu socia y algo más"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "La escuela de baile tiene más alumnos que nunca."
+    },
+    {
+     "dia": 6,
+     "suceso": "Discute con Valentina por un malentendido."
+    },
+    {
+     "dia": 14,
+     "suceso": "Le pide a Valentina que vivan juntos."
+    }
+   ],
+   "conocer_en": [
+    "salsa",
+    "terraza",
+    "discoteca",
+    "fiesta_casa"
+   ]
+  },
+  {
+   "id": "clara",
+   "nombre": "Clara",
+   "edad": 29,
+   "genero": "f",
+   "profesion": "bibliotecaria",
+   "plantilla": "oficina",
+   "barrio": "Chamberí",
+   "trabajo": "biblioteca",
+   "aficiones": [
+    "libreria"
+   ],
+   "voz": "es-ES-XimenaNeural",
+   "tono": "-4Hz",
+   "personalidad": "Tímida, irónica cuando coge confianza, devora libros, romántica secreta.",
+   "estilo": "Habla bajito y escribe muy bien, cita libros.",
+   "historia": "Trabaja en la biblioteca del barrio. Lleva un club de lectura. Le gusta Leo pero no se atreve.",
+   "rasgos": "small heart-shaped face, grey-blue eyes, round glasses, light brown hair in a braid, pale skin, petite build, 1.60 m",
+   "ropa": "knitted cardigan and long skirt",
+   "relaciones": {
+    "leo": "el chico de los juegos de mesa que te gusta",
+    "martin": "el librero amigo"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Su club de lectura escoge un libro polémico."
+    },
+    {
+     "dia": 6,
+     "suceso": "Recibe una carta anónima de amor (es de Leo)."
+    },
+    {
+     "dia": 14,
+     "suceso": "Acepta salir con Leo."
+    }
+   ],
+   "conocer_en": [
+    "biblioteca",
+    "libreria"
+   ]
+  },
+  {
+   "id": "diego",
+   "nombre": "Diego",
+   "edad": 31,
+   "genero": "m",
+   "profesion": "entrenador personal en el gimnasio del barrio",
+   "plantilla": "autonomo",
+   "barrio": "Tetuán",
+   "trabajo": "gimnasio",
+   "aficiones": [
+    "padel"
+   ],
+   "voz": "es-ES-AlvaroNeural",
+   "tono": "+0Hz",
+   "personalidad": "Encantador por fuera, inseguro por dentro, intenso.",
+   "estilo": "Habla seguro de sí mismo, piropos, mensajes a deshoras.",
+   "historia": "Ex de Marta. Lo dejaron hace dos años y no lo ha superado. Intenta cambiar.",
+   "rasgos": "chiseled face, dark eyes, perfectly styled black hair, light stubble, tattoo sleeve on left arm, muscular build, 1.80 m",
+   "ropa": "tank top and gym shorts",
+   "relaciones": {
+    "marta": "tu ex; aún te importa",
+    "sergio": "rival del gimnasio de enfrente"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Se entera de que Marta conoce a alguien."
+    },
+    {
+     "dia": 6,
+     "suceso": "Va a terapia y empieza a cambiar."
+    },
+    {
+     "dia": 14,
+     "suceso": "Le pide perdón a Marta de verdad."
+    }
+   ],
+   "conocer_en": [
+    "gimnasio",
+    "padel",
+    "discoteca"
+   ]
+  },
+  {
+   "id": "bea",
+   "nombre": "Bea",
+   "edad": 33,
+   "genero": "f",
+   "profesion": "hermana mayor de Lucía, madre primeriza",
+   "plantilla": "oficina",
+   "barrio": "Arganzuela",
+   "trabajo": null,
+   "aficiones": [
+    "retiro",
+    "parque_perros"
+   ],
+   "voz": "es-ES-ElviraNeural",
+   "tono": "-3Hz",
+   "personalidad": "Responsable, mandona con cariño, agotada, muy divertida.",
+   "estilo": "Habla como hermana mayor, mensajes con fotos del bebé.",
+   "historia": "Hermana de Lucía y prima de Kai. Tiene un bebé de 5 meses, Leo, y está de baja de maternidad.",
+   "rasgos": "oval face like her sister, hazel eyes, tired dark circles, chestnut hair in a messy ponytail, slim build, 1.66 m",
+   "ropa": "comfy sweater with a baby carrier",
+   "relaciones": {
+    "lucia": "tu hermana pequeña",
+    "kai": "tu primo"
+   },
+   "arco": [
+    {
+     "dia": 0,
+     "suceso": "Su bebé no duerme y ella está agotada."
+    },
+    {
+     "dia": 6,
+     "suceso": "Pide a Lucía que sea la madrina."
+    },
+    {
+     "dia": 14,
+     "suceso": "Vuelve al trabajo y le cuesta dejar al bebé."
+    }
+   ],
+   "conocer_en": [
+    "retiro",
+    "parque_perros"
+   ]
+  }
+ ]
+}
