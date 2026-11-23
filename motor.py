@@ -491,7 +491,37 @@ def novedades_vida(p):
     return vividos[:-1], (vividos[-1] if vividos else None)
 
 
-def contexto_personaje(p, nombre_usuario, personajes=None, seg=None):
+def memoria_de_grupo(p, nombre_usuario):
+    """Lo que este personaje vivió en grupo con el usuario: el WhatsApp 'Los de siempre' y la última quedada."""
+    partes = []
+    if p["id"] in MIEMBROS_WHATSAPP:
+        wa = memoria.historial(HILO_WHATSAPP)[-18:]
+        if wa:
+            lineas = [f"{nombre_usuario}: {m['content']}" if m["role"] == "user" else m["content"] for m in wa]
+            partes.append("ÚLTIMOS MENSAJES DEL GRUPO DE WHATSAPP 'LOS DE SIEMPRE' (estás en el grupo y los has leído):\n"
+                          + "\n".join(f"- {l}" for l in lineas))
+    quedadas = [m for m in memoria.historial(p["id"]) if m["role"] == "grupo_txt"]
+    if quedadas:
+        partes.append(f"LO QUE PASÓ EN LA ÚLTIMA QUEDADA EN GRUPO EN LA QUE ESTUVISTE ({quedadas[-1]['fecha'][:10]}):\n"
+                      + quedadas[-1]["content"])
+    if not partes:
+        return ""
+    return ("\n\n" + "\n\n".join(partes) +
+            "\n(Acuérdate de esto: si en privado sale el tema, o te apetece comentarlo, hazlo con naturalidad.)\n")
+
+
+def memoria_privada(p, nombre_usuario, cuantos=10):
+    """Lo último de vuestro chat privado (para cuando está en el grupo: lo recuerda, pero es privado)."""
+    privado = [m for m in memoria.historial(p["id"]) if m["role"] in ("user", "assistant", "nota_voz")][-cuantos:]
+    if not privado:
+        return ""
+    lineas = [f"- {nombre_usuario if m['role'] == 'user' else p['nombre']}: {m['content']}" for m in privado]
+    return ("\n\nLO ÚLTIMO DE TU CHAT PRIVADO CON " + nombre_usuario.upper() +
+            " (lo recuerdas, pero los demás NO lo han leído: no lo cuentes delante de todos salvo que quieras o "
+            + nombre_usuario + " lo saque; puedes hacerle algún guiño discreto):\n" + "\n".join(lineas)[-1500:] + "\n")
+
+
+def contexto_personaje(p, nombre_usuario, personajes=None, seg=None, con_grupo=True):
     """Todo lo que el personaje sabe de sí, del usuario y del mundo en este momento."""
     personajes = personajes or cargar_personajes()
     puntos = memoria.afinidad(p["id"])
@@ -573,7 +603,7 @@ LO QUE RECUERDAS DE {nombre_usuario.upper()}:
 {lista_recuerdos}
 
 MOMENTOS QUE HABÉIS VIVIDO JUNTOS (recuérdalos de vez en cuando, crea bromas internas a partir de ellos):
-{momentos}
+{momentos}{memoria_de_grupo(p, nombre_usuario) if con_grupo else memoria_privada(p, nombre_usuario)}
 
 FECHAS IMPORTANTES CERCANAS DE {nombre_usuario.upper()} (pregunta cómo fue o desea suerte cuando toque):
 {proximas}
@@ -677,7 +707,7 @@ ETIQUETAS (al final, en líneas aparte; el usuario no las ve):
 # =====================================================================
 def construir_prompt_grupo(personas, anfitrion, nombre_usuario, evento=None, formato="persona"):
     personajes = cargar_personajes()
-    fichas = "\n\n".join(f"===== {q['nombre'].upper()} (id: {q['id']}) =====\n" + contexto_personaje(q, nombre_usuario, personajes)
+    fichas = "\n\n".join(f"===== {q['nombre'].upper()} (id: {q['id']}) =====\n" + contexto_personaje(q, nombre_usuario, personajes, con_grupo=False)
                           for q in personas)
     amigos = [q["nombre"] for q in personas if es_conocido(q)]
     extranos = [f"{q['nombre']} (id: {q['id']})" for q in personas if not es_conocido(q)]
@@ -833,6 +863,13 @@ def empezar_grupo(personas, anfitrion, clave_lugar):
 
 
 def terminar_grupo(personas, anfitrion, nombre_usuario):
+    conversacion = []
+    for m in memoria.historial("grupo")[-16:]:
+        conversacion.append(f"- {nombre_usuario}: {m['content']}" if m["role"] == "user" else m["content"])
+    if conversacion:
+        texto = "\n".join(conversacion)[-3500:]
+        for q in personas:
+            memoria.guardar_mensaje(q["id"], "grupo_txt", texto)
     nombres = ", ".join(q["nombre"] for q in personas)
     memoria.añadir_suceso(anfitrion.get("mundo", anfitrion["id"]),
                           f"{nombre_usuario} quedó con {nombres} {anfitrion['lugares'][lugar_actual(anfitrion)]['nombre']}.")

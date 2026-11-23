@@ -529,6 +529,8 @@ if not historial:
 ultimo_user = max((i for i, m in enumerate(historial) if m["role"] in ("user", "foto_usuario")), default=-1)
 for i, m in enumerate(historial):
     rol, contenido = m["role"], m["content"]
+    if rol == "grupo_txt":  # memoria de la quedada en grupo (no se enseña en el chat)
+        continue
     if rol == "lugar":
         st.caption(contenido if contenido.startswith("🌙") else f"📍 Cambio de escena: {contenido}")
         continue
