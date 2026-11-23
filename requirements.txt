@@ -1,0 +1,5 @@
+streamlit>=1.43
+requests
+edge-tts
+gTTS
+pillow
